@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:JDAForms" 
+             x:Class="JDAForms.Views.MainPage"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:tabview="clr-namespace:Xam.Plugin.TabView;assembly=Xam.Plugin.TabView"
+             xmlns:viewtemplate="clr-namespace:JDAForms.Views"
+             Title="My leave balance">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Noti" IconImageSource="noti.png"/>
+    </ContentPage.ToolbarItems>
+    
+    <Grid VerticalOptions="FillAndExpand" RowSpacing="0" HorizontalOptions="FillAndExpand">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="6*" />
+        <RowDefinition Height="10*" />
+    </Grid.RowDefinitions>
+        <!--Canvas-->
+         <skia:SKCanvasView x:Name="canvas" 
+                            PaintSurface="OnCanvasViewPaintSurfaceAsync" 
+                            Grid.Row="0" 
+                            BackgroundColor="#33B8F1"/>
+
+            <Slider x:Name="sweepAngleSlider"
+                   ValueChanged="sliderValueChanged"
+                   Minimum="0" Maximum="260"
+                   IsVisible="false"/>
+        
+         <StackLayout Orientation="Vertical" Grid.Row="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="White"  >
+             <!--TabView Control-->
+            <tabview:TabViewControl HeaderBackgroundColor="White" 
+                                    HeaderSelectionUnderlineColor="#13A6DE"
+                                    HeaderSelectionUnderlineThickness="2"
+                                    HeaderTabTextFontSize="12"
+                                    HeaderTabTextColor="#030303"
+                                    HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="theTabView">
+                <tabview:TabViewControl.ItemSource>
+                    <!--First Tab-->
+                    <tabview:TabItem HeaderText="Approved Leaves" 
+                                     HeaderTabTextFontSize="12">
+                        <ListView x:Name="listView"   
+                                  SeparatorVisibility="None"
+                                  HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <viewtemplate:CardTemplate/>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <!--<Image Source="monkey.png"  HorizontalOptions="FillAndExpand" Aspect="AspectFit"/>-->
+                    </tabview:TabItem>
+                    <!--Second Tab-->
+                    <tabview:TabItem HeaderText="Pending for Approval">
+                        <Image Source="monkey.png" HorizontalOptions="FillAndExpand" Aspect="AspectFit"/>
+                    </tabview:TabItem>
+                    <!--Third Tab-->
+                    <tabview:TabItem HeaderText="Denied leaves">
+                        <Image Source="monkey.png" HorizontalOptions="FillAndExpand" Aspect="AspectFit"/>
+                    </tabview:TabItem>
+                </tabview:TabViewControl.ItemSource>
+            </tabview:TabViewControl>
+
+
+        </StackLayout>
+        
+    
+    
+    </Grid>
+    
+    
+    
+</ContentPage>

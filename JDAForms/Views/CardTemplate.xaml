@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="JDAForms.Views.CardTemplate">
+    <ContentView.Content>
+        <Frame IsClippedToBounds="True"  
+           HasShadow="True"  
+           Padding="0"  
+           BackgroundColor="#44A8DE" >
+            <Frame.Margin>
+                <OnPlatform x:TypeArguments="Thickness"  
+                     Android="10"   
+                     iOS="10"/>
+            </Frame.Margin>
+            <StackLayout Padding="10" Orientation="Horizontal">
+                <Grid HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Grid RowSpacing="0" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="6*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout Grid.Column="0" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                                <Label Text="{Binding startdate,StringFormat='{0:MMM dd}th'}"
+                                       TextColor="White"
+                                       FontSize="Medium"/>
+                                <Label Text=" ~~~ "
+                                       TextColor="White"
+                                       FontSize="Small"/>
+                                <Label Text="{Binding enddate,StringFormat='{0:MMM dd}th'}"
+                                       TextColor="White"
+                                       FontSize="Medium"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal" Grid.Column="1" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                                <Label Text="☑ Approved" HorizontalOptions="EndAndExpand"  TextColor="White" FontSize="Micro"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="1" HorizontalOptions="FillAndExpand">
+                        <Label Text="{Binding upto}" FontSize="Small" TextColor="White"/>
+                    </StackLayout>
+                    <StackLayout Grid.Row="2" HorizontalOptions="FillAndExpand">
+                        <Label Text="{Binding reason}" FontSize="Small" TextColor="White"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>
